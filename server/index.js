@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const db = require('./db/db');
+const {db} = require('./db/index');
 
 const morgan = require('morgan');
 
@@ -11,6 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, '../public')));
+
+app.use('/api', require('./api/index'));
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));

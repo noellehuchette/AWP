@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-
+router.use('/user', require('./user'));
 
 router.use(function (req, res, next) {
   const err = new Error('Not found.');
